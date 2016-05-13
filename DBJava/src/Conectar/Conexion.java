@@ -1,10 +1,11 @@
+package Conectar;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
 	
-	private static final String DB_URL = "jdbc:sqlite:databas.db";
+	private static final String DB_URL = "jdbc:sqlite:database.db";
 	private static final String DRIVER = "org.sqlite.JDBC";
 	
 	public static Connection conexion;
