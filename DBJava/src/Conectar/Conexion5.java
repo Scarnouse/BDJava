@@ -8,10 +8,12 @@ import java.util.ResourceBundle;
 
 import org.sqlite.SQLiteConfig;
 
+import Consultas.ObtenerResultados;
 import CrearTablas.CrearTablas;
 import InsertarDatos.InsertarListaUsuarios;
 import InsertarDatos.IntertarDatos;
 import Modelo.Usuario;
+import ModificarDatos.ActualizarYBorrar;
 
 public class Conexion5 {
 	
@@ -63,12 +65,25 @@ public class Conexion5 {
 		Connection c = Conexion5.getConexion5();
 		//viene de CrearTablas...
 		//logica que impide la creación si el archivo existe
-		CrearTablas.crearTablaUsuario(c);
+		//CrearTablas.crearTablaUsuario(c);
 		//System.out.println(c);
-		IntertarDatos.insertarUsuario(conexion5, new Usuario ("pepe",23));
-		Usuario[] usuarios = {new Usuario("David",8),new Usuario("Luis",65),new Usuario("Reina",32),new Usuario("Juan",83),new Usuario("Eva",13),new Usuario("Lucas",57)};
-		List<Usuario> lista = Arrays.asList(usuarios);
-		InsertarListaUsuarios.insertarUsuario(conexion5, lista);
+		//IntertarDatos.insertarUsuario(conexion5, new Usuario ("pepe",23));
+		//Usuario[] usuarios = {new Usuario("David",8),new Usuario("Luis",65),new Usuario("Reina",32),new Usuario("Juan",83),new Usuario("Eva",13),new Usuario("Lucas",57)};
+		//List<Usuario> lista = Arrays.asList(usuarios);
+		//InsertarListaUsuarios.insertarUsuario(c, lista);
+		List<Usuario> nuevaLista = ObtenerResultados.obtenerTodos(c);
+		for (Usuario usuario : nuevaLista) {
+			System.out.println(usuario);
+		}
+		System.out.println("=======");
+		List<Usuario> listaPorEdad = ObtenerResultados.obtenerResultadosPorEdad(c, 32);
+		for (Usuario usuario : listaPorEdad) {
+			System.out.println(usuario);
+		}
+		System.out.println(ActualizarYBorrar.setNombre(c, "Lolo", "Luis"));
+		System.out.println(ActualizarYBorrar.borrarUsuario(c, "Lolo"));
+		nuevaLista = ObtenerResultados.obtenerTodos(c);
+		
 	}
 
 }
