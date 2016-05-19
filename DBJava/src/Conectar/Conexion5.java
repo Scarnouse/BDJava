@@ -14,6 +14,8 @@ import InsertarDatos.InsertarListaUsuarios;
 import InsertarDatos.IntertarDatos;
 import Modelo.Usuario;
 import ModificarDatos.ActualizarYBorrar;
+import Trasacciones.Indices;
+import Trigger.TriggerBorrado;
 
 public class Conexion5 {
 	
@@ -71,7 +73,7 @@ public class Conexion5 {
 		//Usuario[] usuarios = {new Usuario("David",8),new Usuario("Luis",65),new Usuario("Reina",32),new Usuario("Juan",83),new Usuario("Eva",13),new Usuario("Lucas",57)};
 		//List<Usuario> lista = Arrays.asList(usuarios);
 		//InsertarListaUsuarios.insertarUsuario(c, lista);
-		List<Usuario> nuevaLista = ObtenerResultados.obtenerTodos(c);
+		/*List<Usuario> nuevaLista = ObtenerResultados.obtenerTodos(c);
 		for (Usuario usuario : nuevaLista) {
 			System.out.println(usuario);
 		}
@@ -82,8 +84,10 @@ public class Conexion5 {
 		}
 		System.out.println(ActualizarYBorrar.setNombre(c, "Lolo", "Luis"));
 		System.out.println(ActualizarYBorrar.borrarUsuario(c, "Lolo"));
-		nuevaLista = ObtenerResultados.obtenerTodos(c);
-		
+		nuevaLista = ObtenerResultados.obtenerTodos(c);*/
+		ActualizarYBorrar.borrarUsuario(c, "Reina");
+		TriggerBorrado.triggerBorrado(c);
+		Indices.crearIndices(c);
 	}
 
 }
